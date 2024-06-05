@@ -1,0 +1,105 @@
+<!-- Header -->
+<app-header></app-header>
+<div class="container py-5 ">
+    <div class="p-6 bg-white dark:bg-zinc-800 rounded-lg shadow-md">
+        <h4 class="text-xl font-semibold mb-4">Thông tin đặt hàng</h4>
+        <div class=" grid grid-cols-1 md:grid-cols-2 gap-4 mb-6 d-flex">
+            <div class="px-3">
+                <p><strong>Số đơn hàng:</strong> {{userInfo.MaDonHang}}</p>
+                <p><strong>Thời gian:</strong> {{userInfo.NgayBatDau}}</p>
+                <p>
+                    <strong>Tình trạng đơn hàng:</strong>
+                    <span class="text-success">
+                        <b
+                            [ngClass]="(TrangThaiDonHang === 'Huỷ hàng') || (TrangThaiDonHang === 'Đã hủy') ? 'text-danger' : 'success'">
+                            {{TrangThaiDonHang}}
+                        </b>
+                    </span>
+                </p>
+                <p>
+                    <strong>Phương thức thanh toán:</strong>
+                    <span class="text-blue-500">Thanh toán khi giao hàng (COD)</span>
+                </p>
+                <p>
+                    <strong>Tình trạng thanh toán:</strong>
+                    <span
+                        [ngClass]="(TrangThaiDonHang === 'Huỷ hàng') || (TrangThaiDonHang === 'Đã hủy') ? 'text-danger' : 'text-success'"
+                        class="text-green-500 fw-700">
+                        {{TrangThaiDonHang !== 'Huỷ hàng' || TrangThaiDonHang !== 'Đã hủy' ?
+                        'Đã thanh toán': 'Chưa thanh toán' }}
+                    </span>
+                </p>
+            </div>
+            <div class="px-3">
+                <p><strong>Họ và tên:</strong> {{userInfo.TenKhachHang}}</p>
+                <p><strong>Điện thoại:</strong> {{userInfo.SDT}}</p>
+                <p><strong>Địa chỉ:</strong> {{userInfo.DiaChi}}</p>
+            </div>
+        </div>
+        <h4 class="text-xl font-semibold mb-4">Sản phẩm</h4>
+        <table class="w-full mb-6 border-collapse border border-zinc-300 dark:border-zinc-700">
+            <thead>
+                <tr class="bg-zinc-100 dark:bg-zinc-700">
+                    <th class="border border-zinc-300 dark:border-zinc-700 p-2">#</th>
+                    <th class="border border-zinc-300 dark:border-zinc-700 p-2">Hình ảnh</th>
+                    <th class="border border-zinc-300 dark:border-zinc-700 p-2">Sản phẩm</th>
+                    <th class="border border-zinc-300 dark:border-zinc-700 p-2">Số tiền</th>
+                    <th class="border border-zinc-300 dark:border-zinc-700 p-2">Số lượng</th>
+                    <th class="border border-zinc-300 dark:border-zinc-700 p-2">Tổng cộng</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of orderDetail; let i = index">
+                    <td class="border border-zinc-300 dark:border-zinc-700 p-2 text-center">{{ i + 1 }}</td>
+                    <td class="border border-zinc-300 dark:border-zinc-700 p-2 text-center">
+                        <img src="http://localhost:3000/uploads/{{item.Anh}}" alt="{{item.TenSanPham}}"
+                            class="w-12 h-12 object-cover"
+                            style="max-width: 50px; max-height: 50px; object-fit: cover;" />
+                    </td>
+                    <td class="border border-zinc-300 dark:border-zinc-700 p-2">
+                        <p>{{item.TenSanPham}}</p>
+                        <!-- <p class="text-sm text-zinc-500 dark:text-zinc-400">Cung cấp: NPP HAI DUONG</p> -->
+                    </td>
+                    <td class="border border-zinc-300 dark:border-zinc-700 p-2 text-center ">{{item.GiaMua |
+                        currency:
+                        'VND':'symbol':'1.0-2' }}</td>
+                    <td class="border border-zinc-300 dark:border-zinc-700 p-2 text-center">{{item.SoLuong}}</td>
+                    <td class="border border-zinc-300 dark:border-zinc-700 p-2 text-center">{{item.GiaMua *
+                        item.SoLuong|
+                        currency: 'VND':'symbol':'1.0-2' }}</td>
+                </tr>
+
+
+            </tbody>
+        </table>
+        <div class="mb-6">
+            <p><strong>Phí vận chuyển: </strong> 0đ</p>
+            <p><strong>Tổng cộng: </strong>{{ThanhTien|currency: 'VND':'symbol':'1.0-2'}}</p>
+        </div>
+        <!-- <p class="mb-6">
+            <strong>Tình trạng giao hàng: </strong> <span class="text-yellow-500">Chưa xử lý</span>
+        </p> -->
+
+        <div class="flex space-x-4">
+            <!-- <button [ngClass]="TrangThaiDonHang === 'Đang chờ duyệt ? 'hidden': 'hi'" -->
+            <button [ngClass]="(TrangThaiDonHang === 'Đã nhận hàng') ? 'hidden' : 'block'"
+                [ngClass]="(TrangThaiDonHang === 'Huỷ hàng')||(TrangThaiDonHang === 'Đã nhận hàng') || (TrangThaiDonHang === 'Đã hủy') ? 'hidden' : 'block'"
+                (click)="cancelOrder(userInfo.id)" class="bg-danger text-white p-3 my-4 rounded-lg">Hủy đơn
+                hàng</button>
+            <button [ngClass]="(TrangThaiDonHang === 'Đã nhận hàng') ? 'hidden' : 'block'"
+                [ngClass]="(TrangThaiDonHang === 'Huỷ hàng')||(TrangThaiDonHang === 'Đã nhận hàng') || (TrangThaiDonHang === 'Đã hủy') ? 'hidden' : 'block'"
+                (click)="GiaoHangDonHang(userInfo.id)" class="bg-success text-white p-3 ml-2 my-4 rounded-lg">Đã
+                nhận hàng</button>
+            <a href="/info">
+
+                <button class="bg-secondary text-white p-3 ml-2 my-4 rounded-lg">Quay lại</button>
+            </a>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+<app-footer></app-footer>
