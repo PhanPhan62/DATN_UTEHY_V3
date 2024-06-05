@@ -26,11 +26,13 @@ export class OrdersComponent implements OnInit {
         // console.log(this.orders);
       });
   }
-  fetchOrdersDetail(id: number) {
+  fetchOrdersDetail(id: number, MaKhachHang: any) {
     this.http
       .get(`${this.url}/orderDetail/${id}`)
       .subscribe((data: any) => {
         if (data) {
+          data = [...data, MaKhachHang];
+          // console.log(data);
           // Sau khi nhận được dữ liệu, điều hướng đến component khác
           this.router.navigate([`/admin/orders/detail/${id}`], { state: { orderDetail: data } });
         }

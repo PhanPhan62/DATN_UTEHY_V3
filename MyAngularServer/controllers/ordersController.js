@@ -3,6 +3,22 @@ const axios = require("axios").default; // npm install axios
 const CryptoJS = require("crypto-js"); // npm install crypto-js
 const moment = require("moment"); // npm install moment
 
+exports.getOrderCustomerDetailData = (req, res) => {
+  const MaDonHang = req.params.id;
+
+  const MaKhachHang = req.query.MaKhachHang;
+  const query = `CALL getOrderCustomerDetailData (${MaDonHang}, ${MaKhachHang})`;
+  // console.log(query);
+
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Lỗi:", err);
+      res.status(500).json({ message: "Lỗi", error: err });
+    } else {
+      res.status(200).json(results[0]);
+    }
+  });
+};
 exports.getAllOrderCustomer = (req, res) => {
   const MaKhachHang = req.params.id;
   const query = `CALL getAllOrderCustomer (${MaKhachHang})`;

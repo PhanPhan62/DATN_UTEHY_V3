@@ -8,6 +8,10 @@ router.get(
   "/ordersProductDetail/:maChiTietDonHang",
   ordersController.getAllOrdersProductDetail
 );
+router.get(
+  "/getOrderCustomerDetailData/:id",
+  ordersController.getOrderCustomerDetailData
+);
 router.get("/countOrder", ordersController.countOrder);
 router.get("/allOrder/:id", ordersController.allOrder);
 router.get("/cancelOrder/:id", ordersController.cancelOrder);
