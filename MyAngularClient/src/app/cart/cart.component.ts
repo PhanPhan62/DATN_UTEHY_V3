@@ -57,23 +57,6 @@ export class CartComponent implements OnInit {
       // Nếu không có dữ liệu trong localStorage, bạn có thể thực hiện một hành động khác tùy thuộc vào logic của ứng dụng của bạn
       console.log('Không có dữ liệu giỏ hàng trong localStorage');
     }
-
-    // const cartItemsString = localStorage.getItem('Cart');
-    // // const cartItemsString = window.localStorage.getItem('Cart');
-    // console.log(this.cartItems);
-
-    // if (cartItemsString !== null) {
-    //   this.cartItems = JSON.parse(cartItemsString);
-
-    //   // if (this.headerComponent) {
-    //   //   this.headerComponent.cartMini();
-    //   // } else {
-    //   //   console.log('Header component is not available');
-    //   // }
-    // } else {
-    //   console.log('No data found in local storage');
-    // }
-    // // this.headerComponent.cartMini();
   }
   deleteCartFull(id: any) {
     this.headerComponent.deleteCart(id);

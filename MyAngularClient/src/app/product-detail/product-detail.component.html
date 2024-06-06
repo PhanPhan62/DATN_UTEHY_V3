@@ -115,7 +115,8 @@
                                 <i class="ti-minus"></i>
                             </button>
                         </div>
-                        <input type="text" name="quant[1]" class="input-number" data-min="1" data-max="1000" value="1">
+                        <input type="text" [ngModel]="quantity" name="quant[1]" class="input-number" data-min="1"
+                            data-max="1000" value="1">
                         <div class="button plus">
                             <button type="button" class="btn btn-primary btn-number" data-type="plus"
                                 data-field="quant[1]">
@@ -127,7 +128,7 @@
                 </div>
                 <div class="add-to-cart">
                     <a class="btn">Thêm giỏ hàng</a>
-                    <a href="#" class="btn min"><i class="ti-heart"></i></a>
+                    <a href="#" (click)="plusQuantity(2, 1)" class="btn min"><i class="ti-heart"></i></a>
                     <a href="#" class="btn min"><i class="fa fa-compress"></i></a>
                 </div>
                 <div class="default-social">
