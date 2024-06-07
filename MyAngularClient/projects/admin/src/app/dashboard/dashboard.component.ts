@@ -48,7 +48,7 @@ export class DashboardComponent implements OnInit {
     },
     xaxis: {
       // categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
-      categories: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"]
+      // categories: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"]
     }
   };
 
@@ -112,6 +112,7 @@ export class DashboardComponent implements OnInit {
   //   );
   // }
 
+  namThongKe: any;
   thongKe() {
     this.http.get<any[]>(this.url + 'thongKe').subscribe(
       (data: any[]) => {
@@ -121,15 +122,23 @@ export class DashboardComponent implements OnInit {
         // Cập nhật dữ liệu của series trong chartOptions
         this.chartOptions.series = [
           {
-            name: "My-series",
+            name: "Số tiền",
             data: newArray
           }
         ];
 
-        // console.log(this.chartOptions);
+        // Lấy giá trị tháng từ mỗi đối tượng trong mảng data và đẩy chúng vào một mảng mới
+        const month = data.map(obj => `Tháng ${obj.month}`);
+
+
+        // Cập nhật dữ liệu của xaxis trong chartOptions
+        this.chartOptions.xaxis = {
+          categories: month
+        };
+
+        console.log(data);
 
         // Lưu trữ dữ liệu thống kê vào biến thongKeData để sử dụng trong template
-        this.thongKeData = data;
       },
       error => {
         console.log('Error:', error);
