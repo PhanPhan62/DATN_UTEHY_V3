@@ -15,6 +15,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GalleriaModule } from 'primeng/galleria';
 import { OrderDetailComponent } from './components/order-detail/order-detail.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 @NgModule({
   declarations: [AppComponent, ProductComponent, OrdersComponent, DashboardComponent, OrderDetailComponent],
   imports: [
@@ -27,9 +28,10 @@ import { OrderDetailComponent } from './components/order-detail/order-detail.com
     TableModule,
     MessagesModule,
     GalleriaModule,
-    MessageModule
+    MessageModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
