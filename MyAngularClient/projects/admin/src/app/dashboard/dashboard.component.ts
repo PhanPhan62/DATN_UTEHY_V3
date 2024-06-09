@@ -33,23 +33,25 @@ export class DashboardComponent implements OnInit {
   public url = 'http://localhost:3000/';
   @ViewChild("chart") Chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions> = {
-    series: [
-      {
-        name: "My-series",
-        data: [10, 41, 35, 51, 49, 62, 69, 91, 1480]
-      }
-    ],
+    // series: [
+    //   {
+    //     name: "My-series",
+    //     data: [10, 41, 35, 51, 49, 62, 69, 91, 1480]
+    //   }
+    // ],
     chart: {
       height: 350,
-      type: "bar"
+      // type: "bar"
+      // type: "line"
+      type: "area"
     },
     title: {
-      text: "Thống kê theo năm 2024"
+      text: "Thống kê theo năm 2024 (đơn vị: triệu đồng)"
     },
-    xaxis: {
-      // categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
-      // categories: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"]
-    }
+    // xaxis: {
+    //   // categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
+    //   categories: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"]
+    // }
   };
 
 
@@ -88,29 +90,6 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
-
-  // thongKe() {
-  //   this.http.get<any[]>(this.url + 'thongKe').subscribe(
-  //     (data: any[]) => {
-  //       // Lấy giá trị total_amount từ mỗi đối tượng trong mảng data và đẩy chúng vào một mảng mới
-  //       const newArray = data.map(obj => obj.total_amount);
-
-  //       // Chuyển đổi mảng mới thành chuỗi JSON
-  //       const result = JSON.stringify(newArray);
-  //       console.log(result);
-
-  //       this.thongKeData = result;
-
-  //       // Lưu trữ dữ liệu thống kê vào biến thongKeData để sử dụng trong template
-  //       // this.thongKeData = data;
-
-  //       // console.log(this.thongKeData);
-  //     },
-  //     error => {
-  //       console.log('Error:', error);
-  //     }
-  //   );
-  // }
 
   namThongKe: any;
   thongKe() {
