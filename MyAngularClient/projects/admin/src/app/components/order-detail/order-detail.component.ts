@@ -59,7 +59,7 @@ export class OrderDetailComponent implements OnInit {
     if (cartDataJSON) {
       const orderDetailData = JSON.parse(cartDataJSON);
       this.orderDetail = orderDetailData;
-      console.log(this.orderDetail);
+      // console.log(this.orderDetail);
       this.calculateTotals();
     } else {
       console.log("không tìm thấy thông tin1");
@@ -69,7 +69,7 @@ export class OrderDetailComponent implements OnInit {
     if (userInfo) {
       const userInfoData = JSON.parse(userInfo);
       this.userInfo = userInfoData;
-      console.log(this.userInfo);
+      // console.log(this.userInfo);
     } else {
       console.log("không tìm thấy thông tin2");
     }
@@ -109,9 +109,9 @@ export class OrderDetailComponent implements OnInit {
     if (myUser) {
       // Chuyển đổi chuỗi JSON thành đối tượng JavaScript (mảng trong trường hợp này)
       const myUserData = JSON.parse(myUser);
-      console.log(
-        myUserData
-      );
+      // console.log(
+      //   myUserData
+      // );
 
       // Gán mảng cartData cho biến của bạn
       this.myUserID = myUserData[0].id;

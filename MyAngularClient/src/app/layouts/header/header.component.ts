@@ -5,6 +5,7 @@ import { ProductComponent } from 'src/app/product/product.component';
 import { LoginComponent } from 'src/app/login/login.component';
 import { CartService } from 'src/app/cart.service';
 import { CartComponent } from 'src/app/cart/cart.component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -27,8 +28,9 @@ export class HeaderComponent {
     private loginComponent: LoginComponent,
     // private cartService: CartService,
     private productComponent: ProductComponent,
-    private cartComponent: CartComponent
-  ) {}
+    private cartComponent: CartComponent,
+    private router: Router
+  ) { }
   // this.appComponent.updateSharedValue('New Value from Component 1');
   ngOnInit() {
     this.fetchMenu();
@@ -66,7 +68,8 @@ export class HeaderComponent {
       // console.log('Không có dữ liệu trong localStorage');
     }
   }
-  public cartMini() {
+  cartMini() {
+    // this.runWeb();
     const productListString = localStorage.getItem('Cart');
 
     if (productListString) {
@@ -155,10 +158,32 @@ export class HeaderComponent {
 
       this.isLoginHeader = storedUser.isLoggedIn;
       this.nameAcc = storedUser.TaiKhoan;
-      console.log(this.isLoginHeader);
+      // console.log(this.isLoginHeader);
     } else {
       // Khóa 'userInfo' không tồn tại trong localStorage
       console.log('Không có dữ liệu trong localStorage');
     }
+  }
+
+  searchResults: any[] = [];
+  query: string = '';
+  onSearch() {
+
+    this.http.get<any[]>(`http://localhost:3000/search?q=${this.query}`).subscribe(results => {
+      this.searchResults = results;
+      console.log(this.query);
+
+      if (this.query.trim() === '') {
+        // Nếu giá trị của query là một chuỗi rỗng sau khi loại bỏ khoảng trắng
+        this.query = '';
+        this.searchResults = []
+        return
+      }
+    });
+
+  }
+
+  redirectToProductDetail(productId: string): void {
+    this.router.navigate(['/productDetail', productId]);
   }
 }

@@ -102,6 +102,13 @@
     </div>
     <!-- end container -->
     <div style="text-align:center">
+        <div class="container w-25 d-flex">
+            <select class="form-select" aria-label="Default select example">
+                <option selected value="2024" [(ngModel)]="namThongKe">2024</option>
+                <option value="2023" [(ngModel)]="namThongKe">2023</option>
+                <option value="2022" [(ngModel)]="namThongKe">2022</option>
+            </select>
+        </div>
         <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!" [xaxis]="chartOptions.xaxis!"
             [title]="chartOptions.title!"></apx-chart>
     </div>

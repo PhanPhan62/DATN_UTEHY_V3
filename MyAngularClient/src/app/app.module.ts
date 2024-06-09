@@ -22,6 +22,7 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { RegisterComponent } from './register/register.component';
 import { InfoComponent } from './info/info.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { ProductByCategoryComponent } from './product-by-category/product-by-category.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,6 +38,7 @@ import { OrderDetailComponent } from './order-detail/order-detail.component';
     RegisterComponent,
     InfoComponent,
     OrderDetailComponent,
+    ProductByCategoryComponent,
     // OrdersComponent,
   ],
   imports: [

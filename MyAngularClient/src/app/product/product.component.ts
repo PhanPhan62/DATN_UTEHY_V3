@@ -45,6 +45,8 @@ export class ProductComponent implements OnInit {
   fetchLoaiSanPhams() {
     this.http.get(this.url + '/admin/category').subscribe((data: any) => {
       this.loaiSanPhams = data;
+      console.log(this.loaiSanPhams);
+
     });
   }
   fetchSanPhams() {
@@ -71,31 +73,33 @@ export class ProductComponent implements OnInit {
     // console.log(productId, TenSanPham, Anh, Gia, quantity);
 
     this.homeComponent.addToCart(productId, TenSanPham, Anh, Gia, quantity);
+    // this.homeComponent.callCartMiniFromHeader();
   }
-  // callCartMiniFromHeader() {
-  //   this.headerComponent.cartMini;
-  // }
 
   redirectToProductDetail(productId: string): void {
     this.router.navigate(['/productDetail', productId]);
   }
 
-  dataLocalStorage: any;
-  // localStorageRead() {
-  //   if (localStorage.getItem('Cart') == null) {
-  //     this.loginComponent.isLoggedIn = false;
-  //   } else {
-  //     this.loginComponent.isLoggedIn = true;
-  //   }
-  // }
-
-  // read data in localstore, if it exist, we would show it in the cart, if is not exist, we would show nothing
+  storedData: any[] = [];
+  isLogIn: boolean = false;
   readLocalStorageData() {
-    this.dataLocalStorage = localStorage.getItem('Cart');
-    if (this.dataLocalStorage) {
-      this.cart = JSON.parse(this.dataLocalStorage);
+    const storedUserJSON = localStorage.getItem('userInfo');
+
+    if (storedUserJSON) {
+      const storedUser = JSON.parse(storedUserJSON);
+
+      this.isLogIn = storedUser.isLoggedIn;
+      const productListString = localStorage.getItem('Cart');
+      if (productListString) {
+        this.storedData = JSON.parse(productListString);
+
+      }
     } else {
-      this.cart = [];
+      // Khóa 'userInfo' không tồn tại trong localStorage
+      // alert()
+      return;
+      // console.log('Không có dữ liệu trong localStorage');
     }
   }
+
 }

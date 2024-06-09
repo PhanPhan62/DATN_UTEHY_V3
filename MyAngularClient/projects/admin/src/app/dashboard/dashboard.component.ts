@@ -91,7 +91,7 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  namThongKe: any;
+  namThongKe: any = 2024;
   thongKe() {
     this.http.get<any[]>(this.url + 'thongKe').subscribe(
       (data: any[]) => {
@@ -115,7 +115,7 @@ export class DashboardComponent implements OnInit {
           categories: month
         };
 
-        console.log(data);
+        // console.log(data);
 
         // Lưu trữ dữ liệu thống kê vào biến thongKeData để sử dụng trong template
       },

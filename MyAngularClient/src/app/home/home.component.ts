@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
     private cartService: CartService,
     // private loginComponent: LoginComponent,
     private router: Router
-  ) {}
+  ) { }
   ngOnInit() {
     this.fetchNewProducts();
     this.fetchNewProducts3();
@@ -53,6 +53,7 @@ export class HomeComponent implements OnInit {
       this.cartItems = cartItems;
     });
     this.callCart();
+    // this.headerComponent.cartMini();
     // this.getCartItem()
   }
   // getCartItem(){
@@ -171,7 +172,7 @@ export class HomeComponent implements OnInit {
       console.log(this.cart);
 
       alert(`Sản phẩm đã được thêm vào giỏ`);
-      this.callCartMiniFromHeader();
+      this.headerComponent.cartMini();
     } else {
       alert("Bạn cần đăng nhập để thực hiện thêm giỏ hàng")
       this.router.navigate(['/login']);
@@ -217,7 +218,7 @@ export class HomeComponent implements OnInit {
   }
 
   callCartMiniFromHeader() {
-    this.headerComponent.cartMini();
+
   }
   redirectToProductDetail(productId: string): void {
     this.router.navigate(['/productDetail', productId]);

@@ -10,6 +10,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { RegisterComponent } from './register/register.component';
 import { InfoComponent } from './info/info.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
+import { ProductByCategoryComponent } from './product-by-category/product-by-category.component';
 
 
 const routes: Routes = [
@@ -52,6 +53,11 @@ const routes: Routes = [
     title: 'Chi tiết đơn hàng',
     path: 'info/orderDetail/:id',
     component: OrderDetailComponent,
+  },
+  {
+    title: 'Sản phẩm theo loại',
+    path: 'sanpham/loaisanpham/:id',
+    component: ProductByCategoryComponent,
   },
   {
     title: 'Đăng ký',

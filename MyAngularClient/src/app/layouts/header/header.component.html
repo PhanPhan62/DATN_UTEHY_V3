@@ -49,7 +49,7 @@
                         <!-- Search Form -->
                         <div class="search-top">
                             <form class="search-form">
-                                <input type="text" placeholder="Search here..." name="search">
+                                <input type="text" placeholder="Tìm kiếm tại đây" name="search">
                                 <button value="search" type="submit"><i class="ti-search"></i></button>
                             </form>
                         </div>
@@ -68,10 +68,34 @@
                                 <option>kid’s item</option>
                             </select> -->
                             <form>
-                                <input style="outline: none;" name="search" placeholder="Bạn cần tìm gì?..."
-                                    type="search">
-                                <button class="btnn"><i class="ti-search"></i></button>
+                                <input autofocus [(ngModel)]="query" (ngModelChange)="onSearch()" style="outline: none;"
+                                    name="search" placeholder="Bạn cần tìm gì?..." type="search">
+                                <button (click)="onSearch()" class="btnn"><i class="ti-search"></i></button>
+                                <div *ngIf="searchResults.length">
+
+                                    <ul class="shopping-list " style="background-color: #fff; width: 520px;">
+                                        <li *ngFor="let item of searchResults" style="padding: 5px;">
+                                            <a style="cursor: pointer;" class="cart-img"
+                                                (click)="redirectToProductDetail(item.id)">
+                                                <img src="http://localhost:3000/uploads/{{item.Anh}}"
+                                                    alt="{{item.TenSanPham}}">
+                                            </a>
+
+                                            <h4>
+                                                <a style="cursor: pointer; text-align: left;"
+                                                    (click)="redirectToProductDetail(item.id)">{{item.TenSanPham}}</a>
+                                            </h4>
+                                            <p class="quantity">
+                                                <span class="amount">
+                                                    <b>{{item.Gia | currency: 'VND':'symbol':'1.0-2' }}</b>
+                                                </span>
+                                            </p>
+                                        </li>
+
+                                    </ul>
+                                </div>
                             </form>
+
                         </div>
                     </div>
                 </div>

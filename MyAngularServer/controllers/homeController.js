@@ -172,3 +172,14 @@ exports.thongKe = (req, res) => {
     }
   });
 };
+exports.search = (req, res) => {
+  const searchTerm = req.query.q;
+  const query = "call getSearchProduct (?)";
+  db.query(query, [`%${searchTerm}%`], (err, results) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    res.json(results[0]);
+    // console.log(results[0]);
+  });
+};
