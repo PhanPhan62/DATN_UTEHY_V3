@@ -42,12 +42,16 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() {
     this.detailProduct(); this.callCart();
   }
+  dataProductByIdCategory: any[] = [];
+  fetchProductByIdCategory(id: any) {
+    this.http.get(this.url + `/getAllProductByID/ ${id}`).subscribe((data: any) => {
+      this.dataProductByIdCategory = data;
+    });
+  }
 
   detailProduct() {
     this.route.paramMap.subscribe((params) => {
       const productId = params.get('id');
-
-
       this.http
         .get(`${this.url}/getByIdProduct/${productId}`)
         .subscribe((data: any) => {

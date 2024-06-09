@@ -2,3 +2,7 @@
     min-height: 400px !important;
     object-fit: cover;
 }
+
+.btn:hover {
+    cursor: pointer;
+}

@@ -13,6 +13,16 @@ exports.getAllOrdersProductDetail = (req, res) => {
   });
 };
 
+exports.getAllProductByID = (req, res) => {
+  const idProduct = req.params.id;
+  db.query("CALL getAllProductByID(?)", [id], (err, results) => {
+    if (err) {
+      res.status(500).json({ message: "Lỗi", error: err });
+    } else {
+      res.status(200).json(results[0]);
+    }
+  });
+};
 exports.getNewProduct = (req, res) => {
   db.query("CALL getAllNewProduct", (err, results) => {
     if (err) {
@@ -154,7 +164,7 @@ exports.getOrderDetail = (req, res) => {
 
 exports.thongKe = (req, res) => {
   // const id = req.params.id;
-  db.query("CALL SalesBy12Month()", (err, results) => {
+  db.query("CALL SalesBy12Month(2024)", (err, results) => {
     if (err) {
       res.status(500).json({ message: "Lỗi", error: err });
     } else {

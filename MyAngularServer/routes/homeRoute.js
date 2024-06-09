@@ -14,8 +14,9 @@ router.get("/orderDetail/:id", homeController.getOrderDetail);
 router.get("/getByIdProduct/:id", homeController.getByIdProduct);
 router.get("/listImg/:id", homeController.listImg);
 router.get("/productDetail/:id", homeController.getProductDetail);
+router.get("/getAllProductByID/:id", homeController.getAllProductByID);
 router.get("/thongKe/", homeController.thongKe);
-router.get("/productDetail/:id", homeController.GETALLPRODUCTSIMILAR);
+// router.get("/productDetail/:id", homeController.GETALLPRODUCTSIMILAR);
 // router.post('/login', homeController.verifyToken, (req, res) => {
 //     res.json({ message: 'Route đã được xác thực' });
 // });

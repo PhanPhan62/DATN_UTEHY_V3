@@ -30,7 +30,7 @@ export class ProductComponent implements OnInit {
     private homeComponent: HomeComponent,
     private cartComponent: CartComponent,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.fetchLoaiSanPhams();
@@ -39,6 +39,8 @@ export class ProductComponent implements OnInit {
     this.cartService.cart$.subscribe((cartItems) => {
       this.cartItems = cartItems;
     });
+
+    this.readLocalStorageData();
   }
   fetchLoaiSanPhams() {
     this.http.get(this.url + '/admin/category').subscribe((data: any) => {
@@ -55,10 +57,10 @@ export class ProductComponent implements OnInit {
       this.maker = data;
     });
   }
-  callCart() {
-    this.homeComponent.callCartMiniFromHeader;
-    // this.callCartMiniFromHeader();
-  }
+  // callCart() {
+  //   this.homeComponent.callCartMiniFromHeader;
+  //   // this.callCartMiniFromHeader();
+  // }
   addToCartProduct(
     productId: number,
     TenSanPham: any,
@@ -66,9 +68,34 @@ export class ProductComponent implements OnInit {
     Gia: any,
     quantity: number
   ) {
+    // console.log(productId, TenSanPham, Anh, Gia, quantity);
+
     this.homeComponent.addToCart(productId, TenSanPham, Anh, Gia, quantity);
   }
-  callCartMiniFromHeader() {
-    this.headerComponent.cartMini;
+  // callCartMiniFromHeader() {
+  //   this.headerComponent.cartMini;
+  // }
+
+  redirectToProductDetail(productId: string): void {
+    this.router.navigate(['/productDetail', productId]);
+  }
+
+  dataLocalStorage: any;
+  // localStorageRead() {
+  //   if (localStorage.getItem('Cart') == null) {
+  //     this.loginComponent.isLoggedIn = false;
+  //   } else {
+  //     this.loginComponent.isLoggedIn = true;
+  //   }
+  // }
+
+  // read data in localstore, if it exist, we would show it in the cart, if is not exist, we would show nothing
+  readLocalStorageData() {
+    this.dataLocalStorage = localStorage.getItem('Cart');
+    if (this.dataLocalStorage) {
+      this.cart = JSON.parse(this.dataLocalStorage);
+    } else {
+      this.cart = [];
+    }
   }
 }
