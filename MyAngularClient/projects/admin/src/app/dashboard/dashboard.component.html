@@ -101,16 +101,28 @@
         <!-- End Row -->
     </div>
     <!-- end container -->
-    <div style="text-align:center">
-        <div class="container w-25 d-flex">
-            <select class="form-select" aria-label="Default select example">
-                <option selected value="2024" [(ngModel)]="namThongKe">2024</option>
-                <option value="2023" [(ngModel)]="namThongKe">2023</option>
-                <option value="2022" [(ngModel)]="namThongKe">2022</option>
+    <div class="card-style mb-30" style="text-align:center">
+        <div class="d-flex mb-20 ">
+            <select [(ngModel)]="namThongKe" class="form-select mr-20 w-25" aria-label="Default select example"
+                (ngModelChange)="namThongKeF()">
+                <option value="2024">2024</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
             </select>
+            <select [(ngModel)]="typeChart" class="form-select w-25" aria-label="Default select example"
+                (ngModelChange)="namThongKeF()">
+                <option value="area">Biểu đồ miền</option>
+                <option value="bar">Biểu đồ cột</option>
+                <option value="line">Biểu đồ đường</option>
+            </select>
+
         </div>
-        <apx-chart [series]="chartOptions.series!" [chart]="chartOptions.chart!" [xaxis]="chartOptions.xaxis!"
-            [title]="chartOptions.title!"></apx-chart>
+
+
+
+        <apx-chart class="w-100" [series]="chartOptions.series!" [chart]="chartOptions.chart!"
+            [xaxis]="chartOptions.xaxis!" [title]="chartOptions.title!"></apx-chart>
+
     </div>
 
 

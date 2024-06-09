@@ -147,8 +147,9 @@
                                                 item.TrangThaiDonHang }}</span> -->
 
                                             <span class="status-btn"
-                                                [ngClass]="(item.TrangThaiDonHang.trim() === 'Đang chờ duyệt') ? 'info-btn' : 'success-btn'">{{
-                                                item.TrangThaiDonHang }}</span>
+                                                [ngClass]="(item.TrangThaiDonHang === 'Huỷ hàng') || (item.TrangThaiDonHang === 'Đã hủy') ? 'danger-btn' : 'success-btn'">
+                                                {{item.TrangThaiDonHang }}
+                                            </span>
                                         </p>
                                     </td>
                                     <!-- <td>

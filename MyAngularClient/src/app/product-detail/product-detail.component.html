@@ -36,7 +36,7 @@
                 <div *ngIf="listImg">
                     <carousel style="cursor: pointer;">
                         <slide *ngFor="let image of listImg">
-                            <img style="height: 500px; width: auto; display: flex; align-items: center;"
+                            <img style="height: 100%; max-height: 500px; width: auto; display: flex; align-items: center;"
                                 [src]="'http://localhost:3000/uploads/' + image.Anh" alt="{{ image.caption }}">
                             <!-- <div class="carousel-caption">
                                         sdvsdv

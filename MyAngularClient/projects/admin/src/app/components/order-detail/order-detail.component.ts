@@ -180,4 +180,12 @@ export class OrderDetailComponent implements OnInit {
 
     document.body.innerHTML = originalContents;
   }
+
+  cancelOrder(id: any) {
+    this.http.get(this.url + `/cancelOrder/${this.idOrder}`).subscribe((data: any) => {
+      this.orderDetail = data;
+      alert('Đơn hàng đã được hủy!');
+      this.fetchAllOrderData();
+    });
+  }
 }

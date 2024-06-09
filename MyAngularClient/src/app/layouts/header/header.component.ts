@@ -171,7 +171,6 @@ export class HeaderComponent {
 
     this.http.get<any[]>(`http://localhost:3000/search?q=${this.query}`).subscribe(results => {
       this.searchResults = results;
-      console.log(this.query);
 
       if (this.query.trim() === '') {
         // Nếu giá trị của query là một chuỗi rỗng sau khi loại bỏ khoảng trắng

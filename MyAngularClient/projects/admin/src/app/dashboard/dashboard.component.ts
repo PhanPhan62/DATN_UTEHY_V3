@@ -30,6 +30,8 @@ export class DashboardComponent implements OnInit {
   users: any[] = [];
   thongKeData: any;
   countUsers: number = 0;
+
+
   public url = 'http://localhost:3000/';
   @ViewChild("chart") Chart!: ChartComponent;
   public chartOptions: Partial<ChartOptions> = {
@@ -45,9 +47,9 @@ export class DashboardComponent implements OnInit {
       // type: "line"
       type: "area"
     },
-    title: {
-      text: "Thống kê theo năm 2024 (đơn vị: triệu đồng)"
-    },
+    // title: {
+    //   text: "Thống kê theo năm 2024 (đơn vị: triệu đồng)"
+    // },
     // xaxis: {
     //   // categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"]
     //   categories: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"]
@@ -62,7 +64,7 @@ export class DashboardComponent implements OnInit {
     this.getTotalIncome();
     this.getTotalCost();
     this.getUsers();
-    this.thongKe();
+    this.namThongKeF();
   }
 
   getUsers() {
@@ -91,38 +93,74 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+
+  // thongKe() {
+  //   this.http.get<any[]>(this.url + 'thongKe').subscribe(
+  //     (data: any[]) => {
+  //       // Lấy giá trị total_amount từ mỗi đối tượng trong mảng data và đẩy chúng vào một mảng mới
+  //       const newArray = data.map(obj => obj.total_amount);
+
+  //       // Cập nhật dữ liệu của series trong chartOptions
+  //       this.chartOptions.series = [
+  //         {
+  //           name: "Số tiền",
+  //           data: newArray
+  //         }
+  //       ];
+
+  //       // Lấy giá trị tháng từ mỗi đối tượng trong mảng data và đẩy chúng vào một mảng mới
+  //       const month = data.map(obj => `Tháng ${obj.month}`);
+
+
+  //       // Cập nhật dữ liệu của xaxis trong chartOptions
+  //       this.chartOptions.xaxis = {
+  //         categories: month
+  //       };
+
+  //       // console.log(data);
+
+  //       // Lưu trữ dữ liệu thống kê vào biến thongKeData để sử dụng trong template
+  //     },
+  //     error => {
+  //       console.log('Error:', error);
+  //     }
+  //   );
+  // }
   namThongKe: any = 2024;
-  thongKe() {
-    this.http.get<any[]>(this.url + 'thongKe').subscribe(
-      (data: any[]) => {
-        // Lấy giá trị total_amount từ mỗi đối tượng trong mảng data và đẩy chúng vào một mảng mới
-        const newArray = data.map(obj => obj.total_amount);
+  typeChart: any = 'area';
+  namThongKeF() {
+    this.http.get<any[]>(`http://localhost:3000/thongke?q=${this.namThongKe}`).subscribe(data => {
+      console.log(data);
 
-        // Cập nhật dữ liệu của series trong chartOptions
-        this.chartOptions.series = [
-          {
-            name: "Số tiền",
-            data: newArray
-          }
-        ];
+      const newArray = data.map(obj => obj.total_amount);
 
-        // Lấy giá trị tháng từ mỗi đối tượng trong mảng data và đẩy chúng vào một mảng mới
-        const month = data.map(obj => `Tháng ${obj.month}`);
-
-
-        // Cập nhật dữ liệu của xaxis trong chartOptions
-        this.chartOptions.xaxis = {
-          categories: month
-        };
-
-        // console.log(data);
-
-        // Lưu trữ dữ liệu thống kê vào biến thongKeData để sử dụng trong template
-      },
-      error => {
-        console.log('Error:', error);
+      // Cập nhật dữ liệu của series trong chartOptions
+      this.chartOptions.series = [
+        {
+          name: "Số tiền",
+          data: newArray
+        }
+      ];
+      this.chartOptions.title = {
+        text: `Thống kê theo năm ${this.namThongKe} (đơn vị: triệu đồng)`
       }
-    );
+
+      this.chartOptions.chart = {
+        height: 350,
+        type: this.typeChart,
+        zoom: {
+          enabled: false
+        }
+      }
+      // Lấy giá trị tháng từ mỗi đối tượng trong mảng data và đẩy chúng vào một mảng mới
+      const month = data.map(obj => `Tháng ${obj.month}`);
+
+
+      // Cập nhật dữ liệu của xaxis trong chartOptions
+      this.chartOptions.xaxis = {
+        categories: month
+      };
+    });
   }
 
 

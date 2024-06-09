@@ -163,12 +163,14 @@ exports.getOrderDetail = (req, res) => {
 // };
 
 exports.thongKe = (req, res) => {
+  const year = req.query.q;
   // const id = req.params.id;
-  db.query("CALL SalesBy12Month(2024)", (err, results) => {
+  db.query("CALL SalesBy12Month(?)", [year], (err, results) => {
     if (err) {
       res.status(500).json({ message: "Lỗi", error: err });
     } else {
       res.status(200).json(results[0]);
+      // console.log(results[0]);
     }
   });
 };
