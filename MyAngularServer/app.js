@@ -31,14 +31,6 @@ app.use(express.static(path.join(__dirname)));
 app.use("/admin", product, category, unit, maker);
 app.use("", menu, home, order, auth, vnpayRoute);
 
-// const transporter = nodemailer.createTransport({
-//   service: "gmail", // hoặc một dịch vụ email khác bạn sử dụng
-//   auth: {
-//     user: "cy.love.dev@gmail.com",
-//     pass: "Phanthanhcong29032002@"
-//   }
-// });
-
 app.post("/api/send-verification-code", (req, res) => {
   const nodemailer = require("nodemailer");
   const { email } = req.body;
