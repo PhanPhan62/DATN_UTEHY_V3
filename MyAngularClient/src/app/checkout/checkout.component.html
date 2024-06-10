@@ -33,30 +33,41 @@
                                 <div class="form-group">
                                     <label>Tên khách hàng<span>*</span></label>
                                     <input type="text" name="customerName" [(ngModel)]="customerName"
-                                        placeholder="{{customerName}}" autofocus required>
+                                        placeholder="Nhập Tên Bạn..." autofocus required>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-6">
                                 <div class="form-group">
                                     <label>Địa chỉ nhận hàng<span>*</span></label>
                                     <input type="text" name="customerAddress" [(ngModel)]="customerAddress"
-                                        placeholder="{{customerAddress}}" required>
+                                        placeholder="Nhập Địa chỉ của bạn..." required>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-md-6 col-6">
                                 <div class="form-group">
                                     <label>SĐT<span>*</span></label>
                                     <input type="text" name="customerPhone" [(ngModel)]="customerPhone"
-                                        placeholder="{{customerPhone}}" required>
+                                        placeholder="Nhập số điện thoại của bạn... " required>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-md-6 col-6">
+
+                            <form class="col-lg-6 col-md-6 col-6" [formGroup]="verificationForm"
+                                (ngSubmit)="sendVerificationCode()">
                                 <div class="form-group">
-                                    <label>Email<span>*</span></label>
-                                    <input type="email" name="customerEmail" [(ngModel)]="customerEmail"
-                                        placeholder="{{customerEmail}}" required>
+                                    <label for="email">Email<span>*</span></label>
+                                    <input id="email" formControlName="email" type="email"
+                                        placeholder="Nhập email của bạn ..." required />
+                                    <!-- <button type="submit">Send Verification Code</button> -->
                                 </div>
-                            </div>
+
+                            </form>
+
+                            <!-- <div class="col-lg-6 col-md-6 col-6">
+                                <div class="form-group">
+                                    <label>Mã xác nhận<span>*</span></label>
+                                    <input type="text" name="code" [(ngModel)]="code" placeholder="######" required>
+                                </div>
+                            </div> -->
                             <!-- <div class="col-lg-6 col-md-6 col-6">
                                 <div class="form-group">
                                     <label>Last Name<span>*</span></label>
@@ -380,6 +391,9 @@
                                 </div>
                             </div> -->
                         </div>
+                        <!-- email-verification.component.html -->
+
+
 
                         <!--/ End Form -->
                     </div>

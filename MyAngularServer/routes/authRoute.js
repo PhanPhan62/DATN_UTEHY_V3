@@ -8,4 +8,5 @@ router.post("/login", authControllers.login);
 // router.get("/token", authControllers.checkToken, menuController.getAll);
 router.post("/register", authControllers.register);
 router.post("/loginKH", authControllers.loginKH);
+
 module.exports = router;

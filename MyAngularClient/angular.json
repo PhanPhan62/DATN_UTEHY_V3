@@ -16,6 +16,7 @@
             "outputPath": "dist/client",
             "index": "src/index.html",
             "main": "src/main.ts",
+            "proxyConfig": "proxy.conf.json",
             "polyfills": [
               "zone.js"
             ],

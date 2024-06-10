@@ -1,4 +1,5 @@
 const db = require("../connection");
+const nodemailer = require("nodemailer");
 
 exports.getAllOrdersProductDetail = (req, res) => {
   const MaKhachHang = req.params.id;
@@ -221,4 +222,45 @@ exports.findCategoryPriceMaker = (req, res) => {
       }
     );
   }
+};
+
+exports.sendEmail = async (req, res) => {
+  const nodemailer = require("nodemailer");
+  const { email } = req.body;
+
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // Use `true` for port 465, `false` for all other ports
+    auth: {
+      user: "nguyenyen69000@gmail.com",
+      pass: "qkcxppnxpedsacqz"
+    }
+  });
+
+  // async..await is not allowed in global scope, must use a wrapper
+  async function main() {
+    // send mail with defined transport object
+    const verificationCode = Math.floor(
+      100000 + Math.random() * 900000
+    ).toString();
+    const info = await transporter.sendMail({
+      from: '"Chào mừng đến với Beauty Shop 👻" <nguyenyen69000@gmail.com>', // sender address
+      to: email, // list of receivers
+      subject: "Beauty shop xin chào ✔", // Subject line
+      text: "Thông tin bảo mât, vui lòng không tiết lộ cho bất kỳ ai", // plain text body
+      html: "<h3><b>Mã xác nhận của bạn là: " + verificationCode + "</b></h3>" // html body
+    });
+    // console.log(email);
+
+    console.log("Message sent: %s", info.messageId);
+    // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+    return res.status(200).json({
+      success: true,
+      message: "Email được gửi thành công",
+      confirmCode: verificationCode
+    });
+  }
+
+  main().catch(console.error);
 };
