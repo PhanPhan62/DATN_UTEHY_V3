@@ -17,6 +17,7 @@ router.get("/productDetail/:id", homeController.getProductDetail);
 router.get("/getAllProductByID/:id", homeController.getAllProductByID);
 router.get("/thongKe/", homeController.thongKe);
 router.get("/search", homeController.search);
+router.post("/findCategoryPriceMaker", homeController.findCategoryPriceMaker);
 
 // router.get("/productDetail/:id", homeController.GETALLPRODUCTSIMILAR);
 // router.post('/login', homeController.verifyToken, (req, res) => {

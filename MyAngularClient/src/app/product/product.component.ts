@@ -102,4 +102,49 @@ export class ProductComponent implements OnInit {
     }
   }
 
+  idCategory: any = "";
+  idMaker: any = "";
+  // findCategoryPriceMaker(category: number, maker: number) {
+  //   this.idCategory = category;
+  //   this.idMaker = maker;
+
+  //   console.log(this.idCategory, this.idMaker);
+
+  //   // const params = { idCategory: this.idCategory, idMaker: this.idMaker };
+  //   // this.http.get(this.url + '/findCategoryPriceMaker', { params }).subscribe((data: any) => {
+  //   //   this.maker = data;
+  //   // });
+  // }
+
+  callApiFind(category: number, maker: number) {
+    console.log(category, maker);
+
+  }
+
+  findProducts() {
+    // Gọi API để tìm kiếm sản phẩm dựa trên idCategory và idMaker
+    this.http.post<any>(this.url + '/findCategoryPriceMaker', { idCategory: this.idCategory, idMaker: this.idMaker })
+      .subscribe(response => {
+        this.sanPhams = response;
+        console.log(this.sanPhams);
+
+
+      });
+  }
+
+  onCategoryChange() {
+    // Khi loại sản phẩm được thay đổi, gọi hàm tìm kiếm sản phẩm
+    this.findProducts();
+  }
+
+  onMakerChange() {
+    // Khi nhà sản xuất được thay đổi, gọi hàm tìm kiếm sản phẩm
+    this.findProducts();
+  }
+
+  resetFind() {
+    this.fetchSanPhams()
+  }
+
+
 }

@@ -93,39 +93,6 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-
-  // thongKe() {
-  //   this.http.get<any[]>(this.url + 'thongKe').subscribe(
-  //     (data: any[]) => {
-  //       // Lấy giá trị total_amount từ mỗi đối tượng trong mảng data và đẩy chúng vào một mảng mới
-  //       const newArray = data.map(obj => obj.total_amount);
-
-  //       // Cập nhật dữ liệu của series trong chartOptions
-  //       this.chartOptions.series = [
-  //         {
-  //           name: "Số tiền",
-  //           data: newArray
-  //         }
-  //       ];
-
-  //       // Lấy giá trị tháng từ mỗi đối tượng trong mảng data và đẩy chúng vào một mảng mới
-  //       const month = data.map(obj => `Tháng ${obj.month}`);
-
-
-  //       // Cập nhật dữ liệu của xaxis trong chartOptions
-  //       this.chartOptions.xaxis = {
-  //         categories: month
-  //       };
-
-  //       // console.log(data);
-
-  //       // Lưu trữ dữ liệu thống kê vào biến thongKeData để sử dụng trong template
-  //     },
-  //     error => {
-  //       console.log('Error:', error);
-  //     }
-  //   );
-  // }
   namThongKe: any = 2024;
   typeChart: any = 'area';
   namThongKeF() {

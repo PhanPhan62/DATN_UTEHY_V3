@@ -185,3 +185,40 @@ exports.search = (req, res) => {
     // console.log(results[0]);
   });
 };
+exports.findCategoryPriceMaker = (req, res) => {
+  let { idCategory, idMaker } = req.body;
+
+  // Nếu chỉ có một biến được truyền, đặt giá trị mặc định cho biến còn lại
+  if (!idCategory) {
+    db.query("call findProductByMaker(?)", [idMaker], (err, results) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send(err);
+      }
+      res.json(results[0]);
+    });
+  }
+  if (!idMaker) {
+    db.query("call findProductByCategory(?)", [idCategory], (err, results) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send(err);
+      }
+      res.json(results[0]);
+    });
+  }
+
+  if (idMaker && idCategory) {
+    db.query(
+      "call findProductByCategoryPriceMaker(?,?)",
+      [idCategory, idMaker],
+      (err, results) => {
+        if (err) {
+          console.error(err);
+          return res.status(500).send(err);
+        }
+        res.json(results[0]);
+      }
+    );
+  }
+};
