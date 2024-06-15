@@ -23,6 +23,7 @@ import { RegisterComponent } from './register/register.component';
 import { InfoComponent } from './info/info.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { ProductByCategoryComponent } from './product-by-category/product-by-category.component';
+import { BlogComponent } from './blog/blog.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import { ProductByCategoryComponent } from './product-by-category/product-by-cat
     InfoComponent,
     OrderDetailComponent,
     ProductByCategoryComponent,
+    BlogComponent,
     // OrdersComponent,
   ],
   imports: [

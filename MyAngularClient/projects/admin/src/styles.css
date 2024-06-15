@@ -40,3 +40,6 @@ ul li a:hover {
 ol li a:hover {
     text-decoration: none;
 }
+.hidden-1 {
+    display: none;
+}

@@ -55,7 +55,7 @@
                                 (ngSubmit)="sendVerificationCode()">
                                 <div class="form-group">
                                     <label for="email">Email<span>*</span></label>
-                                    <input id="email" formControlName="email" type="email"
+                                    <input id="email" formControlName="email" type="email" [ngModel]="customerEmail"
                                         placeholder="Nhập email của bạn ..." required />
                                     <!-- <button type="submit">Send Verification Code</button> -->
                                 </div>
@@ -431,11 +431,11 @@
                         </div>
                         <!--/ End Order Widget -->
                         <!-- Payment Method Widget -->
-                        <div class="single-widget payement">
+                        <!-- <div class="single-widget payement">
                             <div class="content">
                                 <img src="/assets/images/payment-method.png" alt="#">
                             </div>
-                        </div>
+                        </div> -->
                         <!--/ End Payment Method Widget -->
                         <!-- Button Widget -->
                         <div class="single-widget get-button">

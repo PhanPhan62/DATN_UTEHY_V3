@@ -31,6 +31,10 @@ export class CheckoutComponent implements OnInit {
 
   sendcode: any;
   code: any;
+  customerName: any;
+  customerAddress: any;
+  customerPhone: any;
+  customerEmail: any;
   sendVerificationCode() {
     const storedUserJSON = localStorage.getItem('userInfo');
     const storedCartJSON = localStorage.getItem('Cart');
@@ -121,10 +125,10 @@ export class CheckoutComponent implements OnInit {
   cart: any;
   clientInfo: any;
 
-  customerName: any;
-  customerAddress: any;
-  customerEmail: any;
-  customerPhone: any;
+  // customerName: any;
+  // customerAddress: any;
+  // customerEmail: any;
+  // customerPhone: any;
   getInfo() {
     const storedUserJSON = localStorage.getItem('userInfo');
     if (storedUserJSON) {
@@ -132,15 +136,15 @@ export class CheckoutComponent implements OnInit {
       this.customerName = this.clientInfo.TenKhachHang
         ? this.clientInfo.TenKhachHang
         : this.customerName;
-      this.customerAddress = this.clientInfo.customerAddress
-        ? this.clientInfo.customerAddress
+      this.customerAddress = this.clientInfo.DiaChi
+        ? this.clientInfo.DiaChi
         : this.customerAddress;
-      // this.customerEmail = this.clientInfo.customerEmail
-      //   ? this.clientInfo.customerEmail
-      //   : this.customerEmail;
-      // this.customerPhone = this.clientInfo.customerPhone
-      //   ? this.clientInfo.customerPhone
-      //   : this.customerPhone;
+      this.customerEmail = this.clientInfo.Email
+        ? this.clientInfo.Email
+        : this.customerEmail;
+      this.customerPhone = this.clientInfo.SDT
+        ? this.clientInfo.SDT
+        : this.customerPhone;
     }
   }
   async createOrder() {

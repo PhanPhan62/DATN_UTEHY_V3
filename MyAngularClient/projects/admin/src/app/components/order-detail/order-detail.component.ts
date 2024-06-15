@@ -37,12 +37,15 @@ export class OrderDetailComponent implements OnInit {
       const orderId = params['id'];
       this.idOrder = orderId;
     });
+
+    this.loadUserData();
     this.fetchAllOrderData();
     this.loadorderDetailData();
     this.calculateTotals();
     this.fetchOrderProductDetailData();
     this.viewDeTail();
-    this.loadUserData();
+    // this.reloadPage();
+    // this.loadUserData();
     // this.fetchOrderCustomerDetailData();
     // this.fetchUsersData()
   }
@@ -71,10 +74,13 @@ export class OrderDetailComponent implements OnInit {
       this.userInfo = userInfoData;
       // console.log(this.userInfo);
     } else {
+      // this.reloadPage();
       console.log("không tìm thấy thông tin2");
     }
   }
-
+  reloadPage() {
+    window.location.reload();
+  }
   calculateTotals(): void {
     this.orderDetail.forEach(item => {
       item.ThanhTien = item.SoLuong * item.GiaMua;
@@ -107,24 +113,13 @@ export class OrderDetailComponent implements OnInit {
 
     // Kiểm tra nếu dữ liệu tồn tại
     if (myUser) {
-      // Chuyển đổi chuỗi JSON thành đối tượng JavaScript (mảng trong trường hợp này)
       const myUserData = JSON.parse(myUser);
-      // console.log(
-      //   myUserData
-      // );
 
-      // Gán mảng cartData cho biến của bạn
       this.myUserID = myUserData[0].id;
-      this.myUserTen = myUserData[0].TenSanPham;
+      this.myUserTen = myUserData[0].TenKhachHang;
       this.myUserNgayDat = myUserData[0].NgayDat;
       this.myUserDiaChi = myUserData[0].DiaChi;
       this.myUserSDT = myUserData[0].SDT;
-
-      // console.log(this.myUser);
-
-      // Bây giờ bạn có thể sử dụng biến user để truy cập và thao tác với giỏ hàng
-      // this.MaKhachHang = this.user.MaKhachHang;
-      // console.log(this.MaKhachHang);
     } else {
       console.log("không tìm thấy thông tin");
 

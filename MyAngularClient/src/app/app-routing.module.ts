@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { InfoComponent } from './info/info.component';
 import { OrderDetailComponent } from './order-detail/order-detail.component';
 import { ProductByCategoryComponent } from './product-by-category/product-by-category.component';
+import { BlogComponent } from './blog/blog.component';
 
 
 const routes: Routes = [
@@ -58,6 +59,11 @@ const routes: Routes = [
     title: 'Sản phẩm theo loại',
     path: 'sanpham/loaisanpham/:id',
     component: ProductByCategoryComponent,
+  },
+  {
+    title: 'Blog',
+    path: 'blog',
+    component: BlogComponent,
   },
   {
     title: 'Đăng ký',

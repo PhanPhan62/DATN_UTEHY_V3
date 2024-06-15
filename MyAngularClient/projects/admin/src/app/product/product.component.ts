@@ -16,11 +16,11 @@ export class ProductComponent implements OnInit {
   public selectedProducts: any[] = [];
   public url = 'http://localhost:3000';
 
-  public MaLoai: any;
+  public MaLoai: any = 11;
   public TenSanPham: any;
   public MoTaSanPham: any;
-  public MaNSX: any;
-  public MaDonViTinh: any;
+  public MaNSX: any = 1;
+  public MaDonViTinh: any = 1;
   public Gia: any;
   public SoLuong: any;
 

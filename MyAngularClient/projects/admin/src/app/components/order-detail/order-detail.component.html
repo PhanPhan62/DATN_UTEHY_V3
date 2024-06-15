@@ -24,13 +24,13 @@
                         <div class="invoice-address">
                             <div class="address-item">
                                 <h5 class="text-bold">Từ</h5>
-                                <h1>Nguyễn Mạnh Khang</h1>
+                                <h1>Phan Thành Công</h1>
                                 <p class="text-sm">
-                                    Kim Thành - Hải Dương
+                                    Tứ kỳ - Hải Dương
                                 </p>
                                 <p class="text-sm">
                                     <span class="text-medium">Email:</span>
-                                    congphan@gmail.com
+                                    nguyenyen69000@gmail.com
                                 </p>
                             </div>
                             <div class="address-item">
@@ -157,16 +157,23 @@
                             align-items-center
                             justify-content-center
                         ">
-                            <li class="m-2">
+                            <li class="m-2"
+                                [ngClass]="(TrangThaiDonHang === 'Huỷ hàng') || (TrangThaiDonHang === 'Đã hủy') ? 'hidden-1' : ''">
                                 <a href="javascript:void(0)" (click)="printInvoice()"
                                     class="main-btn primary-btn btn-hover">
                                     In Đơn Hàng
                                 </a>
                             </li>
-                            <li class="m-2">
+                            <li class="m-2"
+                                [ngClass]="(TrangThaiDonHang === 'Huỷ hàng') || (TrangThaiDonHang === 'Đã hủy') ? 'hidden-1' : ''">
                                 <a href="javascript:void(0)" (click)="cancelOrder(myUserID)"
-                                    class="main-btn primary-btn-outline btn-hover">
+                                    class="main-btn danger-btn-outline btn-hover">
                                     Huỷ đơn hàng
+                                </a>
+                            </li>
+                            <li class="m-2">
+                                <a href="admin/orders" class="main-btn info-btn btn-hover">
+                                    Quay lại
                                 </a>
                             </li>
                         </ul>

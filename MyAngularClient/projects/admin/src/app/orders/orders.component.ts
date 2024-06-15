@@ -57,7 +57,4 @@ export class OrdersComponent implements OnInit {
     // handle the changed value here
     // console.log(newValue);
   }
-
-
-
 }
